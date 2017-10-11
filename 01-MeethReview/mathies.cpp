@@ -1,5 +1,8 @@
 #include "mathies.h"
 
+
+#define _USE_MATH_DEFINES
+#include <cmath>
 int walk(int x)
 {
 	int x = 0;
@@ -38,4 +41,19 @@ float degtoRad(float r, float d, float x)
 float radtoDEg(float r, float d, float x)
 {
 	r = d *(3.14 / 180);
+}
+
+float basicQuat(float x)
+{
+	return sqrt(x) + 2 * x - 7;
+}
+
+float lerp(float start, float end, float time)
+{
+	return start + time * (end - start);
+}
+
+float dist(point2d a, point2d b)
+{
+	return sqrtf(sqrt(b.x - a.x) + sqrt(b.y - a.y));
 }
