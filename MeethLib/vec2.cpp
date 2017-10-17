@@ -1,6 +1,7 @@
 #include "vec2.h"
-#include <cmath>
+#include "meethutils.h"
 #include <climits>
+#include <cmath>
 #include <cfloat>
 
 
@@ -113,12 +114,6 @@
 //	c = c / magnitood(a, b);
 //}
 
-#include "vec2.h"
-
-#include "meethutils.h"
-
-#include <cmath>
-#include <cfloat>
 
 float vec2::operator[](unsigned idx)
 {
