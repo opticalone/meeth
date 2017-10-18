@@ -9,6 +9,7 @@ vec3 operator+(const vec3 & lhs, const vec3 & rhs)
 	result.x = lhs.x + rhs.x;
 	result.y = lhs.y + rhs.y;
 	result.z = lhs.z + rhs.z;
+	return result;
 }
 
 vec3 operator-(const vec3 & lhs, const vec3 & rhs)
@@ -133,21 +134,18 @@ float dist(const vec3 & a, const vec3 & b)
 }
 
 
+
+
 vec3 min(const vec3 & a, const vec3 & b)
 {
-	return vec3();
-}
-
-vec3 min(const vec3 & a, const vec3 & b, const vec3 & c)
-{
 	vec3 temp;
-	temp.x = min(a.x, b.x);
-	temp.y = min(a.y, b.y);
-	temp.z = min(a.z, b.z);
+	temp.x = fmin(a.x, b.x);
+	temp.y = fmin(a.y, b.y);
+	temp.z = fmin(a.z, b.z);
 	return temp;
 }
 
-vec3 max(const vec3 & a, const vec3 & b, const vec3 & c)
+vec3 max(const vec3 & a, const vec3 & b)
 {
 	vec3 temp;
 
@@ -157,4 +155,36 @@ vec3 max(const vec3 & a, const vec3 & b, const vec3 & c)
 	return temp;
 }
 
+vec3 clamp(const vec3 & a_min, const vec3 & v, const vec3 & a_max)
+{
+	vec3 dummy = v;
+	//min {1,1,1};
+	//value {0,6,3};
+	//max {5,5,5};
+
+	dummy = min(dummy, a_max);
+	dummy = max(dummy, a_min);
+
+	return dummy;
+
+}
+float & vec3::operator[](unsigned idx)
+{
+	return v[idx];
+}
+
+float vec3::operator[](unsigned idx) const
+{
+	return v[idx];
+}
+
+
+// Vector perpendicular to two other vectors	
+// yz-zy, zx-xz, xy-yx
+vec3 cross(const vec3 &a, const vec3 &b)
+{
+	return  vec3{ a.y*b.z - a.z*b.y,
+		a.z*b.x - a.x*b.z,
+		a.x*b.y - a.y*b.x };
+}
 
