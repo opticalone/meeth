@@ -1,5 +1,6 @@
 #include "transform.h"
 #include "sfwdraw.h"
+#include <iostream>
 
 Transform::Transform()
 {
@@ -31,7 +32,13 @@ void DrawMatrix(const mat3 & t, float drawing_scale)
 	vec2 pos = t[2].xy;
 	vec2 right_ep = pos + t[0].xy *drawing_scale;
 	vec2 up_ep = pos + t[1].xy *drawing_scale;
-	//sfw::drawLine(pos.x, pos.y, right_ep.y, right_ep.x,GREEN);
+	
+	//sfw::drawLine(pos.x, pos.y, right_ep.y, right_ep.x,CYAN);
 	//sfw::drawLine(pos.x, pos.y, up_ep.y, up_ep.x, BLUE);
-	sfw::drawCircle(pos.x, pos.y, drawing_scale / 5,12,GREEN);
+	sfw::drawCircle(pos.x, pos.y, drawing_scale / 5,12,YELLOW);
+}
+
+void DrawTexture(unsigned sprite, const mat3 &t)
+{
+	sfw::drawTextureMatrix3(sprite, 0, WHITE, t.m);
 }

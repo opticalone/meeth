@@ -128,12 +128,14 @@
   <ItemGroup>
     <ClCompile Include="..\MeethLib\transform.cpp" />
     <ClCompile Include="bot.cpp" />
+    <ClCompile Include="enemy.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\MeethLib\transform.h" />
     <ClInclude Include="bot.h" />
+    <ClInclude Include="enemy.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="Vec3.h" />
   </ItemGroup>

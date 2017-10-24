@@ -1,8 +1,20 @@
 #include "player.h"
 #include "sfwdraw.h"
 
+#include "cstdlib"
+
+Player::Player(vec2 pos, vec2 scale, float angle, float speeds)
+{
+	speed = speeds;
+	dudeT.position = pos;
+	dudeT.dimension = scale;
+	dudeT.angle = angle;
+}
+
 void Player::update()
 {
+
+
 	vec2 movement = { 0,0 };
 	if (sfw::getKey('W'))
 	{
@@ -22,14 +34,15 @@ void Player::update()
 	}
 
 	movement *= speed;
-	pos += movement;
+	dudeT.position += movement;
 	if (sfw::getKey('F'))
 	{
-		speed+=5;
+		speed = 10;
 	}
 }
 
 void Player::Draw()
 {
-	sfw::drawCircle(pos.x, pos.y, 30.f);
+	int dudebro = sfw::loadTextureMap("res/dudebro.png");
+	sfw::drawTexture(dudebro, dudeT.position.x, dudeT.position.y,100,100);
 }

@@ -1,7 +1,7 @@
 #pragma once
 #include "vec2.h"
 #include "mat3.h"
-
+#include <iostream>
 class Transform
 {
 public:
@@ -16,3 +16,5 @@ public:
 };
 
 void DrawMatrix(const mat3 &t, float drawing_scale);
+
+void DrawTexture(unsigned sprite, const mat3 &t);

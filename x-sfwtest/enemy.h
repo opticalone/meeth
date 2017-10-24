@@ -3,14 +3,14 @@
 #include "transform.h"
 
 
-class Player
+class Enemy
 {
 public:
 
-	Transform dudeT;
+	Transform broT;
 
-	Player(vec2 pos, vec2 scale, float angle, float speeds);
-	
+	Enemy(vec2 pos, vec2 scale, float angle, float speeds);
+
 	float speed;
 	void update();
 	void Draw();
