@@ -9,9 +9,11 @@ public:
 
 	Transform dudeT;
 
-	Player(vec2 pos, vec2 scale, float angle, float speeds);
+	Player(vec2 pos, vec2 scale, float angle, float speeds, int rdius);
 	
 	float speed;
 	void update();
 	void Draw();
+	int h;
+	
 };

@@ -1,14 +1,23 @@
 #include "enemy.h"
 #include "sfwdraw.h"
-
+#include "player.h"
+#include "mat3.h"
+#include"meethutils.h"
+#include <cmath>
 #include "cstdlib"
 
-Enemy::Enemy(vec2 pos, vec2 scale, float angle, float speeds)
+bool isCol = false;
+
+
+
+Enemy::Enemy(vec2 pos, vec2 scale, float angle, float speeds, int radius, int health)
 {
 	speed = speeds;
 	broT.position = pos;
 	broT.dimension = scale;
 	broT.angle = angle;
+	h = radius;
+	m = health;
 }
 
 void Enemy::update()
@@ -35,14 +44,64 @@ void Enemy::update()
 
 	movement *= speed;
 	broT.position += movement;
-	if (sfw::getKey('F'))
+	if (sfw::getKey('Q'))
 	{
-		speed = 10;
+		speed + 10;
 	}
-}
 
+	if (isCol)
+	{
+		m-=5;
+		
+		
+	}
+
+
+}
+void DrawCirclez(vec2 pos, float r)
+{
+	sfw::drawCircle(pos.x, pos.y, r, 12, ORANGE);
+}
 void Enemy::Draw()
 {
+	
+	
+	if (m<50 && m>0)
+	{
+		int bantidudebro = sfw::loadTextureMap("res/antidudebro.png");
+		sfw::drawTexture(bantidudebro, broT.position.x, broT.position.y, 100, 100, 0, true, 0, RED);
+	}
+	
+	else if (m > 0)
+	{
+
 	int antidudebro = sfw::loadTextureMap("res/antidudebro.png");
-	sfw::drawTexture(antidudebro, broT.position.x, broT.position.y, 100, 100);
+	sfw::drawTexture(antidudebro, broT.position.x, broT.position.y, 100, 100,0,true,0);
+	DrawCirclez(broT.position, h);
+
+	}
+	 
+
+		std::cout << "IM HITTING HIM"<<std::endl;
 }
+
+bool Enemy::Collision(Player &me)
+{
+	if (dist(me.dudeT.position, broT.position) < me.h + h)
+	{
+		isCol = true;
+		
+		return isCol;
+		
+	}
+	{
+		isCol = false;
+		return isCol;
+	}
+	
+}
+
+
+
+
+

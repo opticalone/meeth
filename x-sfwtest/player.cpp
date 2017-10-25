@@ -3,12 +3,14 @@
 
 #include "cstdlib"
 
-Player::Player(vec2 pos, vec2 scale, float angle, float speeds)
+Player::Player(vec2 pos, vec2 scale, float angle, float speeds,int rdius)
 {
 	speed = speeds;
 	dudeT.position = pos;
 	dudeT.dimension = scale;
 	dudeT.angle = angle;
+	h = rdius;
+
 }
 
 void Player::update()
@@ -37,12 +39,19 @@ void Player::update()
 	dudeT.position += movement;
 	if (sfw::getKey('F'))
 	{
-		speed = 10;
+		speed * 10;
 	}
+}
+
+void DrawCircle(vec2 pos, float r)
+{
+	  sfw::drawCircle(pos.x, pos.y, r, 12, GREEN);
 }
 
 void Player::Draw()
 {
 	int dudebro = sfw::loadTextureMap("res/dudebro.png");
-	sfw::drawTexture(dudebro, dudeT.position.x, dudeT.position.y,100,100);
+	//harrisDrawCircle(dudeT.position, h);
+	sfw::drawTexture(dudebro, dudeT.position.x-25, dudeT.position.y-25,100,100);
+	
 }

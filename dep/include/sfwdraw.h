@@ -82,7 +82,8 @@ NOTE: YOU MUST CALL initContext for any of the functions to work!
 #define GREEN    0x00ff00ff
 #define BLUE	 0x0000ffff
 #define NONE     0x00000000
-
+#define ORANGE   0xff9000ff
+#define PURP	 0x8700ffff
 #define PI 3.14159265359
 
 namespace sfw
