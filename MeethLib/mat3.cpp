@@ -44,10 +44,7 @@ mat3 transpose(const mat3 &A)
 mat3 operator*(const mat3 &A, const mat3 &B)
 {
 	mat3 retval;
-	// we can flip the rows and cols so that the rows
-	// of A (rhs) are accessible as vectors. This makes
-	// finding the dot products of A's rows and B's cols
-	// more convenient.
+
 	mat3 At = transpose(A);
 
 	for (int y = 0; y < 3; y++)
@@ -57,7 +54,7 @@ mat3 operator*(const mat3 &A, const mat3 &B)
 	return retval;
 }
 
-vec3 operator*(const mat3 &A, const vec3 &B)
+vec3 operator*(const mat3 & A, const vec3 & B)
 {
 	mat3 At = transpose(A);
 
@@ -65,6 +62,7 @@ vec3 operator*(const mat3 &A, const vec3 &B)
 		dot(At[1], B),
 		dot(At[2], B) };
 }
+
 
 
 // Determinant is the "triple product"

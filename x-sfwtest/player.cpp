@@ -18,7 +18,7 @@ void Player::update()
 
 
 	vec2 movement = { 0,0 };
-	if (sfw::getKey('W'))
+	/*if (sfw::getKey('W'))
 	{
 		movement.y += 1;
 	}
@@ -33,7 +33,7 @@ void Player::update()
 	if (sfw::getKey('D'))
 	{
 		movement.x += 1;
-	}
+	}*/
 
 	movement *= speed;
 	dudeT.position += movement;

@@ -33,7 +33,9 @@ mat3 operator-(const mat3 &A, const mat3 &B);
 
 mat3 operator*(const mat3 &A, const mat3 &B); //combine
 
-mat3 operator*(const mat3 &A, const mat3 &V); //apply
+//This might be a vec3 function not a mat3
+vec3 operator*(const mat3 &A, const vec3 &B);
+//mat3 operator*(const mat3 &A, const vec3 &B); //apply
 
 mat3 transpose(const mat3 &A); //flip rows and columns
 

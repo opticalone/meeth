@@ -2,6 +2,7 @@
 #include "vec2.h"
 union vec3
 {
+
 	//array
 	float v[3];
 
