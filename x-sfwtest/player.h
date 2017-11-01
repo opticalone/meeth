@@ -15,3 +15,13 @@ public:
 	Sprite sprite;
 	
 };
+
+class Wall
+{
+public:
+	Transform transform;
+	Collider collider;
+	Sprite sprite;
+};
+
+bool doCollision(Player &player, Wall &wall);

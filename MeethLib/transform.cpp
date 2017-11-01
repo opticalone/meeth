@@ -35,9 +35,7 @@ void DrawMatrix(const mat3 & t, float drawing_scale)
 	
 	sfw::drawLine(pos.x, pos.y, right_ep.x, right_ep.y,CYAN);
 	sfw::drawLine(pos.x, pos.y, up_ep.x,    up_ep.y,   BLUE);
-	int dudebro = sfw::loadTextureMap("res/dudebro.png");
-	//harrisDrawCircle(dudeT.position, h);
-	sfw::drawTexture(pos.x, pos.y, - 25, - 25, 100, 100); sfw::drawCircle(pos.x, pos.y, drawing_scale / 2,4,PURP);
+	sfw::drawCircle(pos.x, pos.y, drawing_scale / 2,4,PURP);
 }
 void DrawTexture(unsigned sprite, const mat3 &t)
 {

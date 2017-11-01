@@ -47,3 +47,29 @@ Collision intersect_AABB_Circle(const AABB & A, const circle & B)
 {
 	return Collision();
 }
+
+void static_resolution(vec2 & pos, vec2 & vel, const Collision & hit, float elas)
+{
+	pos += hit.axis * hit.hand * hit.pDepth;
+	vel = -reflect(vel, hit.axis*hit.hand)* elas;
+}
+
+void dynamic_resolution(vec2 &Apos, vec2 & Avel, float Amass, 
+						vec2 & Bpos, vec2 & Bvel,float Bmass, const Collision & hit, float elas)
+{
+	float j;
+	vec2 normal = hit.axis*hit.hand;
+	vec2 Rvel = Avel - Bvel;
+
+	-(1+elas)*dot(Rvel, normal) / dot(normal ,normal*(1 / Amass + 1 / Bmass));
+	
+
+	vec2 fAvel = Avel += (j / Amass) *normal;
+	vec2 fBvel = Bvel += (j / Bmass) *normal;
+
+
+	Apos += normal * hit.pDepth*Amass/(Amass + Bmass);
+	Bpos += normal * hit.pDepth*Bmass/(Amass + Bmass);
+}
+
+
