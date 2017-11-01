@@ -30,12 +30,14 @@ mat3 Transform::getGlobalTransform() const
 void DrawMatrix(const mat3 & t, float drawing_scale)
 {
 	vec2 pos = t[2].xy;
-	vec2 right_ep = pos + t[0].xy *drawing_scale;
-	vec2 up_ep = pos + t[1].xy *drawing_scale;
+	vec2 right_ep = pos + ( t[0].xy) *drawing_scale;
+	vec2 up_ep =    pos + ( t[1].xy) *drawing_scale;
 	
-	sfw::drawLine(pos.x, pos.y, right_ep.y, right_ep.x,CYAN);
-	sfw::drawLine(pos.x, pos.y, up_ep.y, up_ep.x, BLUE);
-	sfw::drawCircle(pos.x, pos.y, drawing_scale / 2,4,PURP);
+	sfw::drawLine(pos.x, pos.y, right_ep.x, right_ep.y,CYAN);
+	sfw::drawLine(pos.x, pos.y, up_ep.x,    up_ep.y,   BLUE);
+	int dudebro = sfw::loadTextureMap("res/dudebro.png");
+	//harrisDrawCircle(dudeT.position, h);
+	sfw::drawTexture(pos.x, pos.y, - 25, - 25, 100, 100); sfw::drawCircle(pos.x, pos.y, drawing_scale / 2,4,PURP);
 }
 void DrawTexture(unsigned sprite, const mat3 &t)
 {

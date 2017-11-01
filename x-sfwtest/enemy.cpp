@@ -1,6 +1,6 @@
 #include "enemy.h"
 #include "sfwdraw.h"
-#include "player.h"
+
 #include "mat3.h"
 #include"meethutils.h"
 #include <cmath>
@@ -85,21 +85,7 @@ void Enemy::Draw()
 		std::cout << "IM HITTING HIM"<<std::endl;
 }
 
-bool Enemy::Collision(Player &me)
-{
-	if (dist(me.dudeT.position, broT.position) < me.h + h)
-	{
-		isCol = true;
-		
-		return isCol;
-		
-	}
-	{
-		isCol = false;
-		return isCol;
-	}
-	
-}
+
 
 
 

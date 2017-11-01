@@ -128,6 +128,9 @@
   <ItemGroup>
     <ClCompile Include="..\MeethLib\transform.cpp" />
     <ClCompile Include="bot.cpp" />
+    <ClCompile Include="collider.cpp" />
+    <ClCompile Include="collision.cpp" />
+    <ClCompile Include="DrawShape.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
@@ -136,10 +139,14 @@
   <ItemGroup>
     <ClInclude Include="..\MeethLib\transform.h" />
     <ClInclude Include="bot.h" />
+    <ClInclude Include="collider.h" />
+    <ClInclude Include="collision.h" />
+    <ClInclude Include="controller.h" />
     <ClInclude Include="DrawShape.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="Rigidbody.h" />
+    <ClInclude Include="Sprite.h" />
     <ClInclude Include="Vec3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
