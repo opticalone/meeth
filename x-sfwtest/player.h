@@ -22,6 +22,18 @@ public:
 	Transform transform;
 	Collider collider;
 	Sprite sprite;
+
 };
 
-bool doCollision(Player &player, Wall &wall);
+class Enemy
+{
+
+public:
+	Transform transform;
+	Rigidbody rigidbody;
+	Collider collider;
+	Sprite sprite;
+};
+
+bool doCollision(Player &player, const Wall &wall);
+bool doCollision(Player &player, const Enemy &enemy);

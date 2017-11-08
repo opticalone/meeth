@@ -10,7 +10,7 @@ public:
 	int handle;
 	vec2 dim;
 	vec2 offset;
-	Sprite(int a_handle=-1, float width=0, float height=0) : handle(a_handle), 
+	Sprite(int a_handle=-1, float width=1, float height=1) : handle(a_handle), 
 												  dim{ width, height }, 
 												  offset{ 0,0 }
 	{

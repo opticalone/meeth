@@ -5,21 +5,36 @@
 //poll for input and apply to rigid body
 class Controller
 {
+
 public:
+	float turningSpeed;
+	float speed;
+	float brakePower;
 
-	void poll(Rigidbody &rb, const Transform &t )
+	Controller() : turningSpeed(240), speed(360), brakePower(8)
 	{
-		if (sfw::getKey('W'))rb.force += t.getGlobalTransform()[1].xy * 2.f;
-		if (sfw::getKey('A'))rb.torque += 360;
-		if (sfw::getKey('S'))rb.force += t.getGlobalTransform()[1].xy * 2.f;
-		if (sfw::getKey('D'))rb.torque += -360;
 
-		if (sfw::getKey('Q'))rb.impulse += t.getGlobalTransform()[1].xy * 1.005f;
-		if (sfw::getKey(' '))
-		{
-			rb.force += rb.velocity * 20;
-			rb.torque += rb.aVelocity * 20;
-		}
 	}
 
+	void poll(Rigidbody &rb, const Transform &t)
+	{
+
+		if (sfw::getKey('W'))rb.force +=
+			norm(t.getGlobalTransform()[1].xy) * speed;
+
+		if (sfw::getKey('S'))rb.force -=
+			norm(t.getGlobalTransform()[1].xy) * speed;
+
+		if (sfw::getKey('A'))rb.force -=
+			norm(t.getGlobalTransform()[0].xy) * speed;
+		if (sfw::getKey('D'))rb.force +=
+			norm(t.getGlobalTransform()[0].xy) * speed;
+
+		if (sfw::getKey(' ')) //breaking force
+		{
+			rb.force += -rb.velocity * brakePower;
+			rb.torque += -rb.aVelocity * brakePower;
+		}
+		if (sfw::getKey('E'))rb.impulse;
+	}
 };

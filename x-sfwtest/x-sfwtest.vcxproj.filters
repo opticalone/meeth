@@ -27,9 +27,6 @@
     <ClCompile Include="..\MeethLib\transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="enemy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Rigidbody.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -54,9 +51,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\MeethLib\transform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Rigidbody.h">

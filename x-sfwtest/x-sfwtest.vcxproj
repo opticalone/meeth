@@ -131,7 +131,6 @@
     <ClCompile Include="collider.cpp" />
     <ClCompile Include="collision.cpp" />
     <ClCompile Include="DrawShape.cpp" />
-    <ClCompile Include="enemy.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
@@ -143,7 +142,6 @@
     <ClInclude Include="collision.h" />
     <ClInclude Include="controller.h" />
     <ClInclude Include="DrawShape.h" />
-    <ClInclude Include="enemy.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="Rigidbody.h" />
     <ClInclude Include="Sprite.h" />
