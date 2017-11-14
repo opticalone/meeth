@@ -11,7 +11,7 @@ public:
 	float speed;
 	float brakePower;
 
-	Controller() : turningSpeed(240), speed(360), brakePower(8)
+	Controller() : turningSpeed(240), speed(500), brakePower(9)
 	{
 
 	}
@@ -27,8 +27,11 @@ public:
 
 		if (sfw::getKey('A'))rb.force -=
 			norm(t.getGlobalTransform()[0].xy) * speed;
+
 		if (sfw::getKey('D'))rb.force +=
 			norm(t.getGlobalTransform()[0].xy) * speed;
+
+		
 
 		if (sfw::getKey(' ')) //breaking force
 		{

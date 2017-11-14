@@ -15,92 +15,134 @@
 
 int main()
 {
-	sfw::initContext(800, 600, "Don't Go Into the Light");
+	sfw::initContext(800, 800, "Don't Go Into the Light");
 	sfw::setBackgroundColor(0x110030ff);
 
 	Player player;
 
 	player.sprite = sfw::loadTextureMap("res/dudebro.png");
-	player.transform.dimension = vec2{ 48, 48 };
+	player.transform.dimension = vec2{ 52, 62 };
 	player.transform.position = vec2{ 400,300 };
 	player.collider.box.extents = { .5,.5 };
 
-	Enemy enemy;
-	enemy.sprite = sfw::loadTextureMap("res/antidudebro.png");
-	enemy.transform.dimension = vec2{ 36,36 };
-	enemy.transform.position = vec2{ 300,200 };
-	enemy.collider.box.extents = { .5,.5 };
+	Enemy enemy[20];
+	enemy[0].sprite = sfw::loadTextureMap("res/antidudebro.png");
+	enemy[0].transform.dimension = vec2{ 36,36 };
+	enemy[0].transform.position = vec2{ 300,200 };
+	enemy[0].collider.box.extents = { .5,.5 };
 
-	Wall wallz [5];
-	wallz[0].transform.position = { 200,300 };
-	wallz[0].transform.dimension = { 100,50 };
-	wallz[0].collider.box.extents = { .5, .5 };
-	wallz[0].sprite.dim = { 1,1 };
-	wallz[0].sprite.handle = sfw::loadTextureMap("res/powerup.png");
+	enemy[1].sprite = sfw::loadTextureMap("res/antidudebro.png");
+	enemy[1].transform.dimension = vec2{ 36,36 };
+	enemy[1].transform.position = vec2{ 400,200 };
+	enemy[1].collider.box.extents = { .5,.5 };
 
-	wallz[1].transform.position = { 400,500 };
-	wallz[1].transform.dimension = { 100,100 };
-	wallz[1].collider.box.extents = { .5, .5 };
-	wallz[1].sprite.dim = { 1,1 };
-	wallz[1].sprite.handle = sfw::loadTextureMap("res/heals.png");
+	enemy[2].sprite = sfw::loadTextureMap("res/antidudebro.png");
+	enemy[2].transform.dimension = vec2{ 36,36 };
+	enemy[2].transform.position = vec2{ 200,300 };
+	enemy[2].collider.box.extents = { .5,.5 };
 
+	enemy[3].sprite = sfw::loadTextureMap("res/antidudebro.png");
+	enemy[3].transform.dimension = vec2{ 36,36 };
+	enemy[3].transform.position = vec2{ 100,200 };
+	enemy[3].collider.box.extents = { .5,.5 };
 
-	Wall floor[5];
+	enemy[4].sprite = sfw::loadTextureMap("res/antidudebro.png");
+	enemy[4].transform.dimension = vec2{ 36,36 };
+	enemy[4].transform.position = vec2{ 200,100 };
+	enemy[4].collider.box.extents = { .5,.5 };
 
-	floor[0].transform.position = { 400,30 };
-	floor[0].transform.dimension = { 600,50 };
+	
+
+	Wall floor[20];
+
+	floor[0].transform.position = { 400,10 };
+	floor[0].transform.dimension = { 800,20 };
 	floor[0].collider.box.extents = { .5, .5 };
 	floor[0].sprite.dim = { 1,1 };
-	floor[0].sprite.handle = sfw::loadTextureMap("res/floor.png");
+	//floor[0].sprite.handle = sfw::loadTextureMap("res/floor.png");
 
 	floor[1].transform.position = { 10,400 };
 	floor[1].transform.dimension = { 20,800 };
 	floor[1].collider.box.extents = { .5, .5 };
 	floor[1].sprite.dim = { 1,1 };
-	floor[1].sprite.handle = sfw::loadTextureMap("res/floor.png");
+	//floor[1].sprite.handle = sfw::loadTextureMap("res/floor.png");
 
+	floor[2].transform.position = { 400,790 };
+	floor[2].transform.dimension = { 800,20 };
+	floor[2].collider.box.extents = { .5, .5 };
+	floor[2].sprite.dim = { 1,1 };
+	//floor[2].sprite.handle = sfw::loadTextureMap("res/floor.png");
 
+	floor[3].transform.position = { 790,400 };
+	floor[3].transform.dimension = { 20,800 };
+	floor[3].collider.box.extents = { .5, .5 };
+	floor[3].sprite.dim = { 1,1 };
+	//floor[3].sprite.handle = sfw::loadTextureMap("res/floor.png");
+
+	floor[4].transform.position = { 400,400 };
+	floor[4].transform.dimension = { 20,300 };
+	floor[4].collider.box.extents = { .5, .5 };
+	floor[4].sprite.dim = { 1,1 };
+	//floor[3].sprite.handle = sfw::loadTextureMap("res/floor.png");
 
 	while (sfw::stepContext())
 	{
+		
+		
+
 		float dt = sfw::getDeltaTime();
 
 		player.comtroller.poll(player.rigidbody, player.transform);
 
 		player.rigidbody.integrate(player.transform, dt);
-		enemy.rigidbody.integrate(enemy.transform, dt);
+		
+
+		for (int i=0; i < 20; i++)
+		{
+		enemy[i].rigidbody.integrate(enemy[i].transform, dt);
+		enemy[i].sprite.draw(enemy[i].transform); 
+		}
+		
+		
 
 		player.sprite.draw(player.transform);
-		enemy.sprite.draw(enemy.transform);
+		
 
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < 20; i++)
 		{
 			floor[i].sprite.draw(floor[i].transform);
+
 			
-			wallz[0].sprite.draw(wallz[i].transform);
 
 		}
+
+
+
+		for (int i = 0; i < 20; ++i)
+		{
+			doCollision(player, floor[i]);
 			
-				
+			doCollision(player, enemy[i]);
+			for (int j = 0; j < 20; ++j)
+			{
+				doCollision(enemy[i], floor[j]);
+			}
+		}
+		
+		//drawAABB(player.collider.getGlobalBox(player.transform), BLUE);
+
 
 		for (int i = 0; i < 5; ++i)
 		{
-			doCollision(player, floor[i]);
-			doCollision(player, wallz[i]);
-			doCollision(player, enemy);
+			drawAABB(floor[i].collider.getGlobalBox(floor[i].transform), GREEN);
+			
 		}
 
-		drawAABB(player.collider.getGlobalBox(player.transform), BLUE);
-
-
-		for (int i = 0; i < 5; ++i)
-			drawAABB(floor[i].collider.getGlobalBox(floor[i].transform), GREEN);
-			drawAABB(wallz[0].collider.getGlobalBox(wallz[0].transform), ORANGE);
+		//std::cout << player.transform.position.x << "," << player.transform.position.y << std::endl;
 	}
+sfw::termContext();
 
-	sfw::termContext();
 }
-
 
 
 

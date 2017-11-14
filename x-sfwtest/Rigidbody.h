@@ -24,7 +24,7 @@ public:
 				  force{0,0},
 				  impulse{0,0},
 				  mass(1),
-				  drag(1.1f),
+				  drag(0),
 		aVelocity(0),
 		aAcceleration(0),
 		torque(0),
@@ -41,7 +41,7 @@ public:
 		velocity += acceleration* dt + impulse / mass;
 		T.position += velocity * dt;
 
-		impulse  = { 0,0 };
+		impulse  = {0,0};
 		force = -velocity * drag;
 
 		aAcceleration = torque / mass;

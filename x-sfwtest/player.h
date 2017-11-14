@@ -16,15 +16,6 @@ public:
 	
 };
 
-class Wall
-{
-public:
-	Transform transform;
-	Collider collider;
-	Sprite sprite;
-
-};
-
 class Enemy
 {
 
@@ -35,5 +26,20 @@ public:
 	Sprite sprite;
 };
 
+class Wall
+{
+public:
+	Transform transform;
+	Rigidbody rigidbody;
+	Collider collider;
+	Sprite sprite;
+
+};
+
+
+
 bool doCollision(Player &player, const Wall &wall);
-bool doCollision(Player &player, const Enemy &enemy);
+
+void doCollision(Player &player, Enemy & enemy);
+
+bool doCollision(Enemy & enemy, const Wall & wall);

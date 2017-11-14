@@ -20,6 +20,3 @@ public:
 
 Collision collides(const Transform &At, const Collider &Ac,
 				   const Transform &Bt, const Collider &Bc);
-
-
-void static_resolution(vec2 &pos, vec2 &vel, const Collision &hit);

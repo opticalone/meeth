@@ -51,6 +51,7 @@ Collision intersect_AABB_Circle(const AABB & A, const circle & B)
 void static_resolution(vec2 & pos, vec2 & vel, const Collision & hit, float elas)
 {
 	pos += hit.axis * hit.hand * hit.pDepth;
+
 	vel = -reflect(vel, hit.axis*hit.hand)* elas;
 }
 
@@ -60,19 +61,33 @@ void dynamic_resolution(vec2 &Apos, vec2 & Avel, float Amass,
 						vec2 & Bpos, vec2 & Bvel,float Bmass, 
 						const Collision & hit, float elas)
 {
-	float j = 0.0f;
-	vec2 normal = hit.axis*hit.hand;
+	// Law of Conservation
+	/*
+	mass*vel = momentum
+
+	AP + BP = `AP + `BP // Conservation of Momentum
+	Avel*Amass + Bvel*Bmass = fAvel*Amass + fBvel*Bmass
+	Avel - Bvel = -(fBvel - fAvel)
+	fBvel = Bvel - Avel + fAvel
+	///
+	Avel*Amass +  = fAvel*Amass - Avel*Bmass + fAvel*Bmass
+	*/
+
+	vec2 normal = hit.axis * hit.hand;
+
 	vec2 Rvel = Avel - Bvel;
 
-	-(1+elas)*dot(Rvel, normal) / dot(normal ,normal*(1 / Amass + 1 / Bmass));
-	
+	float j = // impulse
+			  // the total energy applied across the normal
+		-(1 + elas)*dot(Rvel, normal) /
+		dot(normal, normal*(1 / Amass + 1 / Bmass));
 
-	vec2 fAvel = Avel += (j / Amass) *normal;
-	vec2 fBvel = Bvel += (j / Bmass) *normal;
 
+	Avel += (j / Amass) * normal;
+	Bvel -= (j / Bmass) * normal;
 
-	Apos += normal * hit.pDepth*Amass/(Amass + Bmass);
-	Bpos += normal * hit.pDepth*Bmass/(Amass + Bmass);
+	Apos += normal * hit.pDepth * Amass / (Amass + Bmass);
+	Bpos -= normal * hit.pDepth * Bmass / (Amass + Bmass);
 }
 
 

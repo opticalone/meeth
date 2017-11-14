@@ -234,7 +234,7 @@ vec2 &normalize(vec2 &v)
 float dot(const vec2 &a, const vec2 &b)
 {
 	float x = a.x * b.x;
-	float y = a.y * a.y;
+	float y = a.y * b.y;
 	return x + y;
 }
 float dist(const vec2 &a, const vec2 &b)
