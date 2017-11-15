@@ -5,6 +5,9 @@
 #include "Sprite.h"
 #include "Rigidbody.h"
 #include "controller.h"
+
+class Enemy;
+
 class Player
 {
 public:
@@ -13,7 +16,7 @@ public:
 	Collider collider;
 	Controller comtroller;
 	Sprite sprite;
-	
+	Enemy * enemy;
 };
 
 class Enemy
@@ -24,6 +27,7 @@ public:
 	Rigidbody rigidbody;
 	Collider collider;
 	Sprite sprite;
+	
 };
 
 class Wall
@@ -36,7 +40,7 @@ public:
 
 };
 
-
+void chasem(Enemy &enemy, Player &player);
 
 bool doCollision(Player &player, const Wall &wall);
 

@@ -24,7 +24,7 @@ public:
 				  force{0,0},
 				  impulse{0,0},
 				  mass(1),
-				  drag(0),
+				  drag(0.5),
 		aVelocity(0),
 		aAcceleration(0),
 		torque(0),

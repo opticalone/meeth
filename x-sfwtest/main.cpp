@@ -27,31 +27,44 @@ int main()
 
 	Enemy enemy[20];
 	enemy[0].sprite = sfw::loadTextureMap("res/antidudebro.png");
-	enemy[0].transform.dimension = vec2{ 36,36 };
+	enemy[0].transform.dimension = vec2{ 34,58 };
 	enemy[0].transform.position = vec2{ 300,200 };
 	enemy[0].collider.box.extents = { .5,.5 };
 
 	enemy[1].sprite = sfw::loadTextureMap("res/antidudebro.png");
-	enemy[1].transform.dimension = vec2{ 36,36 };
+	enemy[1].transform.dimension = vec2{ 34,58 };
 	enemy[1].transform.position = vec2{ 400,200 };
 	enemy[1].collider.box.extents = { .5,.5 };
 
 	enemy[2].sprite = sfw::loadTextureMap("res/antidudebro.png");
-	enemy[2].transform.dimension = vec2{ 36,36 };
+	enemy[2].transform.dimension = vec2{ 34,58 };
 	enemy[2].transform.position = vec2{ 200,300 };
 	enemy[2].collider.box.extents = { .5,.5 };
 
 	enemy[3].sprite = sfw::loadTextureMap("res/antidudebro.png");
-	enemy[3].transform.dimension = vec2{ 36,36 };
+	enemy[3].transform.dimension = vec2{ 34,58 };
 	enemy[3].transform.position = vec2{ 100,200 };
 	enemy[3].collider.box.extents = { .5,.5 };
 
 	enemy[4].sprite = sfw::loadTextureMap("res/antidudebro.png");
-	enemy[4].transform.dimension = vec2{ 36,36 };
+	enemy[4].transform.dimension = vec2{ 34,58 };
 	enemy[4].transform.position = vec2{ 200,100 };
 	enemy[4].collider.box.extents = { .5,.5 };
 
+	enemy[5].sprite = sfw::loadTextureMap("res/antidudebro.png");
+	enemy[5].transform.dimension = vec2{ 34,58 };
+	enemy[5].transform.position = vec2{100,100 };
+	enemy[5].collider.box.extents = { .5,.5 };
 	
+	enemy[6].sprite = sfw::loadTextureMap("res/antidudebro.png");
+	enemy[6].transform.dimension = vec2{ 34,58 };
+	enemy[6].transform.position = vec2{ 100,300 };
+	enemy[6].collider.box.extents = { .5,.5 };
+
+	enemy[7].sprite = sfw::loadTextureMap("res/antidudebro.png");
+	enemy[7].transform.dimension = vec2{ 34,58 };
+	enemy[7].transform.position = vec2{ 100,400  };
+	enemy[7].collider.box.extents = { .5,.5 };
 
 	Wall floor[20];
 
@@ -97,10 +110,13 @@ int main()
 		player.rigidbody.integrate(player.transform, dt);
 		
 
-		for (int i=0; i < 20; i++)
+		for (int i = 0; i < 20; i++)
 		{
-		enemy[i].rigidbody.integrate(enemy[i].transform, dt);
-		enemy[i].sprite.draw(enemy[i].transform); 
+			enemy[i].rigidbody.integrate(enemy[i].transform, dt);
+			enemy[i].sprite.draw(enemy[i].transform);
+
+			chasem(enemy[i], player);
+
 		}
 		
 		
@@ -111,7 +127,7 @@ int main()
 		for (int i = 0; i < 20; i++)
 		{
 			floor[i].sprite.draw(floor[i].transform);
-
+			
 			
 
 		}
@@ -129,7 +145,7 @@ int main()
 			}
 		}
 		
-		//drawAABB(player.collider.getGlobalBox(player.transform), BLUE);
+		// drawAABB(player.collider.getGlobalBox(player.transform), BLUE);
 
 
 		for (int i = 0; i < 5; ++i)
@@ -233,7 +249,7 @@ sfw::termContext();
 //	//	yTransform[i].dimension = vec2{ 1,1 };
 //	//	yTransform[i].angle = ab;
 //	//	yTransform[i].e_parent = &myTransform;
-//	//	float ab = rand() % 4;
+//	
 //	//	
 //	//
 //
@@ -244,7 +260,7 @@ sfw::termContext();
 //	//	aTran[i].dimension = vec2{ 1,1 };
 //	//	aTran[i].angle = ab;
 //	//	aTran[i].e_parent = &mydTransform;
-//	//	float ab = rand() % 10;
+//	
 //	//}
 //
 //	//Transform bTransform[300];
@@ -254,7 +270,7 @@ sfw::termContext();
 //	//	bTransform[i].dimension = vec2{ 1,1 };
 //	//	bTransform[i].angle = ab;
 //	//	bTransform[i].e_parent = &mybTransform;
-//	//	float ab = rand() % 7;
+//	
 //	//}
 //
 //	//Transform cTransform[300];
